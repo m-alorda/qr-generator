@@ -76,12 +76,11 @@ class QrGenerator:
         if depth < 0:
             raise ValueError(f"Depth cannot be less than 0: {depth}")
 
-        result = self.generate(content, output_file)
+        result = self.generate(content)
         for _ in range(depth):
             previous = result
             result = self.generate(
                 content,
-                output_file=output_file,
                 embedded_image_path=previous,
                 radius=radius,
                 background_color_rgb=background_color_rgb,
@@ -89,6 +88,9 @@ class QrGenerator:
                 edge_color_rgb=edge_color_rgb,
             )
             previous.unlink(missing_ok=True)
+
+        if output_file is not None:
+            result = result.rename(output_file)
 
         return result
 
