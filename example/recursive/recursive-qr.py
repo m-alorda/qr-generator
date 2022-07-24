@@ -14,7 +14,14 @@
 
 from pathlib import Path
 
-from qr_generator import QrGenerator
+try:
+    from qr_generator import QrGenerator
+except ModuleNotFoundError:
+    print(
+        "To run this example, install qr_generator locally, running from "
+        "the root of the project `python -m pip install -e .`"
+    )
+    exit(1)
 
 EXAMPLE_DIR = Path(__file__).absolute().parent
 

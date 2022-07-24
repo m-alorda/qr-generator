@@ -12,7 +12,14 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-from qr_generator import QrGenerator
+try:
+    from qr_generator import QrGenerator
+except ModuleNotFoundError:
+    print(
+        "To run this example, install qr_generator locally, running from "
+        "the root of the project `python -m pip install -e .`"
+    )
+    exit(1)
 
 """                                     
     █▀▀▀▀▀█ ▀   ▄██▀▀▀▀▄  █▀▀▀▀▀█    
